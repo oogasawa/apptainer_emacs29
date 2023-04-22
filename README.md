@@ -19,9 +19,25 @@ Emacs29を使えば開発環境にほとんど影響を与えない。
 ```
 git clone https://github.com/oogasawa/apptainer_emacs29
 cd apptainer_emacs29
+```
 
-# => emacs29.def中のユーザアカウント名を自分のアカウントに編集した後以下を実行する。
+`emacs29.def`中の以下の部分についてユーザアカウント名を自分のアカウントに編集する。
 
+- JDKやmavenは`$HOME/local/`にすでにインストールされているものと仮定されているので、違う場合には適切にインストールし、`emacs29.def`の該当部分を書き換えること。(Apptainerではユーザのホームディレクトリは最初からコンテナにマウントされておりコンテナ内部から見えているので、JDKやmavenはホームディレクトリ以下にインストールするのが簡便である。そうでない場合はapptainer起動時に適切にマウントする必要がある。そのやり方はApptainerのマニュアルを参照のこと。）
+
+```
+    mkdir /home/you
+
+%environment
+    export JAVA_HOME=/home/you/local/jdk-20.0.1
+    export MAVEN_HOME=/home/you/local/apache-maven-3.8.6
+    export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
+
+```
+
+以下を実行してApptainerコンテナイメージ(`emacs29.sif`)を作る。
+
+```
 sudo apptainer build emacs29.sif emacs29.def
 ```
 
