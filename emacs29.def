@@ -5,9 +5,9 @@ From: ubuntu:22.04
     if [ ! -e emacs-29.0.90.tar.xz ] ; then
        wget https://alpha.gnu.org/gnu/emacs/pretest/emacs-29.0.90.tar.xz
     fi
-    if [ ! -e jdk-20.0.1_linux-x64_bin.tar.gz ]; then
-        wget https://download.oracle.com/java/20/archive/jdk-20.0.1_linux-x64_bin.tar.gz
-    fi
+    #if [ ! -e jdk-20.0.1_linux-x64_bin.tar.gz ]; then
+    #    wget https://download.oracle.com/java/20/archive/jdk-20.0.1_linux-x64_bin.tar.gz
+    #fi
 
 %files
     ./emacs-29.0.90.tar.xz /usr/local/src
@@ -38,7 +38,7 @@ From: ubuntu:22.04
     mv jdk-20.0.1 ..
 
     mkdir /home/oogasawa
-    mkdir /home/w3wabi
+    #mkdir /home/w3wabi
 
 %environment
     export JAVA_HOME=/home/oogasawa/local/jdk-20.0.1
