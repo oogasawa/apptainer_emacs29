@@ -91,7 +91,7 @@ your_doom_dir/bin/doom sync
 4, emacsを起動する。
 
 ```
-emacs
+emacs --init-directory your_doom_dir
 ```
 
 
