@@ -12,6 +12,7 @@ From: ubuntu:22.04
 
 %post
     apt-get -y update
+    apt-get -y upgrade
     apt-get -y install \
         build-essential \
         gcc-11 g++-11 gdb binutils \
@@ -23,6 +24,23 @@ From: ubuntu:22.04
         python3 \
         gfortran-11
 
+    apt-get -y install \
+        ncdu \
+        tree sl cowsay \
+        git bzip2 pigz \
+        openssh-client cadaver \
+        lftp wget curl net-tools \
+        sysstat fio dbench hpcc stress sysbench \
+
+    ## install iperf3 ver3.6
+	wget https://downloads.es.net/pub/iperf/iperf-3.6.tar.gz
+	tar zxvf iperf-3.6.tar.gz
+	cd iperf-3.6
+	./configure
+	make
+	make install
+
+    ## install emacs29
     cd /usr/local/src
     tar Jxvf emacs-29.0.90.tar.xz
     cd emacs-29.0.90
@@ -30,12 +48,9 @@ From: ubuntu:22.04
     make -j 8
     make install
 
-
-    mkdir /home/you
-
 %environment
-    export JAVA_HOME=/home/you/local/jdk-20
-    export MAVEN_HOME=/home/you/local/apache-maven-3.9.1
+    export JAVA_HOME=$HOME/.sdkman/candidates/java/current
+    export MAVEN_HOME=$HOME/.sdkman/candidates/maven/current
     export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
 
 %runscript
