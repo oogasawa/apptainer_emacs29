@@ -21,7 +21,7 @@ From: ubuntu:22.04
         pkg-config \
         libncurses5-dev \
 	    git wget tree cmigemo \
-        python3 \
+        python3 nodejs \
         gfortran-11
 
     apt-get -y install \
